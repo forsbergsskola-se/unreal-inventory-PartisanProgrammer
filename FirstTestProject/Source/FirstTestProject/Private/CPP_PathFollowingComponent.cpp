@@ -56,12 +56,12 @@ void UCPP_PathFollowingComponent::DrawSphereAtTargetDestination(FLinearColor Col
 	
 }
 
-bool UCPP_PathFollowingComponent::IsDestinationCallable()
+bool UCPP_PathFollowingComponent::IsDestinationReachable(FVector endLocation)
 {
 	UNavigationSystemV1* navSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
 	auto* pawn = Cast<AAIController>(GetOwner())->GetPawn();
 	//Make a query using the pawn's location and the destination location
-	FPathFindingQuery Query{GetOwner(),*MyNavData,pawn->GetActorLocation(), GetPathDestination()}; //FIX END
+	FPathFindingQuery Query{GetOwner(),*MyNavData,pawn->GetActorLocation(), endLocation}; //FIX END
 	return navSystem->TestPathSync(Query);
 }
 
