@@ -2,7 +2,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "FEnchantmentsStruct.h"
-
 #include "ItemPDABase.generated.h"
 
 /**
@@ -12,6 +11,10 @@ UCLASS(BlueprintType, Blueprintable)
 class INVENTORY_API UItemPDABase : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+	bool operator==(const UItemPDABase& item) const
+	{
+		return this->GetUniqueID() == item.GetUniqueID();
+	}
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Item")
 		FString Name;

@@ -1,8 +1,6 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "InventoryBase.h"
-
 
 // Sets default values for this component's properties
 UInventoryBase::UInventoryBase()
@@ -31,5 +29,23 @@ void UInventoryBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+TArray<FItemStruct>& UInventoryBase::GetItems()
+{
+	return Items;
+}
+
+ bool UInventoryBase::RemoveItem(const FItemStruct& item)
+{
+	Items.Remove(item);
+	return true;;
+}
+
+bool UInventoryBase::AddNewItem(const FItemStruct& NewItem)
+{
+	Items.Add(NewItem);
+	OnInventoryItemAdded.Broadcast(NewItem);
+	return true;;
 }
 
