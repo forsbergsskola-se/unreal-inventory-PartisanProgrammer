@@ -2,6 +2,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "FEnchantmentsStruct.h"
+#include "GameplayTagContainer.h"
 #include "ItemPDABase.generated.h"
 
 /**
@@ -11,10 +12,11 @@ UCLASS(BlueprintType, Blueprintable)
 class INVENTORY_API UItemPDABase : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
-	bool operator==(const UItemPDABase& item) const
+	bool operator==(const UItemPDABase& Other) const
 	{
-		return this->GetUniqueID() == item.GetUniqueID();
+		return this->Id == Other.Id;
 	}
+
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Item")
 		FString Name;
@@ -34,4 +36,16 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Generic")
 		TMap<FString,float> Atri_Floats;
+
+
+	FGuid Id;
+	
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool Use(APawn* Pawn);
+	UFUNCTION(BlueprintCallable, Category = "GameplayTags")
+	void SetOwnedGameplayTags(const FGameplayTagContainer& TagContainer);
+
+private:
+	FGameplayTagContainer OwnedTags;
 };

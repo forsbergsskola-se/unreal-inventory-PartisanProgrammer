@@ -25,7 +25,7 @@ public class Inventory : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "CADKernel", "Niagara",
+				"Core", "CADKernel", "Niagara", "GameplayTags",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);

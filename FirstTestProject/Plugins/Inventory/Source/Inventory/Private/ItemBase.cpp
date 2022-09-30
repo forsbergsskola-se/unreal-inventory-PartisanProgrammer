@@ -15,7 +15,7 @@ AItemBase::AItemBase()
 void AItemBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetMesh();
 }
 
 // Called every frame
@@ -24,3 +24,20 @@ void AItemBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void AItemBase::GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const{
+	TagContainer = OwnedTags;
+}
+
+void AItemBase::SetOwnedGameplayTags(const FGameplayTagContainer& TagContainer){
+	OwnedTags = TagContainer;
+}
+
+bool AItemBase::SetMesh() const
+{
+	if(ItemStruct.IsValid())
+	{
+		 GetStaticMeshComponent()->SetStaticMesh(ItemStruct.Item->Mesh);
+		return true;
+	}
+	return false;
+}

@@ -2,3 +2,11 @@
 
 
 #include "ItemPDABase.h"
+
+bool UItemPDABase::Use_Implementation(APawn* Pawn){
+	return false;
+}
+
+void UItemPDABase::SetOwnedGameplayTags(const FGameplayTagContainer& TagContainer){
+	OwnedTags = TagContainer;
+}
