@@ -102,6 +102,14 @@ void UInventoryBase::Debug(){
 	}
 }
 
+bool UInventoryBase::DropItem(const FItemStruct& Item){
+	return false;
+}
+
+bool UInventoryBase::DropAllItems(){
+	return false;
+}
+
 // bool UInventoryBase::DropItem(const FItemStruct& Item){
 // 	if (!Item.IsValid()){
 // 		return false;
