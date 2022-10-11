@@ -102,30 +102,30 @@ void UInventoryBase::Debug(){
 	}
 }
 
-bool UInventoryBase::DropItem(const FItemStruct& Item){
-	if (!Item.IsValid()){
-		return false;
-	}
-	if (!Items.Contains(Item)){
-		return false;
-	}
-	const auto Transform = GetOwner()->GetActorTransform();
-	
-	AItemBase* NewItem = GetWorld()->SpawnActorDeferred<AItemBase>(
-		UItemPDABase::StaticClass(),
-		Transform,
-		nullptr,
-		nullptr,
-		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-	NewItem->ItemStruct = Item;
-	//NewItem->FinishSpawning(Transform);
-	UGameplayStatics::FinishSpawningActor(NewItem, Transform);
-	
-	RemoveItem(Item);
-	return true;
-}
-
-bool UInventoryBase::DropAllItems(){
-	DropItem(Items[0]);
-	return true;
-}
+// bool UInventoryBase::DropItem(const FItemStruct& Item){
+// 	if (!Item.IsValid()){
+// 		return false;
+// 	}
+// 	if (!Items.Contains(Item)){
+// 		return false;
+// 	}
+// 	const auto Transform = GetOwner()->GetActorTransform();
+// 	
+// 	AItemBase* NewItem = GetWorld()->SpawnActorDeferred<AItemBase>(
+// 		UItemPDABase::StaticClass(),
+// 		Transform,
+// 		nullptr,
+// 		nullptr,
+// 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
+// 	NewItem->ItemStruct = Item;
+// 	//NewItem->FinishSpawning(Transform);
+// 	UGameplayStatics::FinishSpawningActor(NewItem, Transform);
+// 	
+// 	RemoveItem(Item);
+// 	return true;
+// }
+//
+// bool UInventoryBase::DropAllItems(){
+// 	DropItem(Items[0]);
+// 	return true;
+// }
