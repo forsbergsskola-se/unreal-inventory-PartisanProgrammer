@@ -3,11 +3,15 @@
 
 #include "AColorSphereBase.h"
 
+#include "Kismet/KismetSystemLibrary.h"
 #include "Net/UnrealNetwork.h"
 
 
-void AAColorSphereBase::Interact_Implementation(ACharacter* Interactor){
-	IIInteract::Interact_Implementation(Interactor);
+void AAColorSphereBase::Interact_Implementation(AActor* HitActor,ACharacter* Interactor){
+	if(!UKismetSystemLibrary::DoesImplementInterface(HitActor,UIInteract::StaticClass())){
+		return;
+	}
+	IIInteract::Interact_Implementation(HitActor,Interactor);
 }
 
 // Sets default values

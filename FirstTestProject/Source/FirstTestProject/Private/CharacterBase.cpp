@@ -32,6 +32,6 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 }
 
 void ACharacterBase::ServerInteract_Implementation(AActor* TargetActor, ACharacter* Interactor){
-	IIInteract::Execute_Interact(TargetActor, Interactor);
+	IIInteract::Execute_Interact( this,TargetActor, Interactor ); //TODO: Check if this is correct
 }
 

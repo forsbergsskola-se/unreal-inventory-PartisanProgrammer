@@ -21,5 +21,5 @@ class FIRSTTESTPROJECT_API IIInteract{
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void Interact(ACharacter* Interactor);
+	void Interact(AActor* HitActor,ACharacter* Interactor);
 };

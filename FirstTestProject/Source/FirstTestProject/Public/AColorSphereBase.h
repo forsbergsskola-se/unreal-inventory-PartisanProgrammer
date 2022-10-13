@@ -17,7 +17,7 @@ enum class EColors:uint8{
 UCLASS()
 class FIRSTTESTPROJECT_API AAColorSphereBase : public AActor, public IIInteract{
 public:
-	virtual void Interact_Implementation(ACharacter* Interactor) override;
+	virtual void Interact_Implementation(AActor* HitActor,ACharacter* Interactor) override;
 
 private:
 	GENERATED_BODY()
