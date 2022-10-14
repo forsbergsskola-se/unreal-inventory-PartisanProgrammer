@@ -2,7 +2,6 @@
 
 
 #include "CharacterBase.h"
-
 #include "IInteract.h"
 
 
@@ -10,7 +9,7 @@
 ACharacterBase::ACharacterBase(){
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	AbilitySystemComponent=CreateDefaultSubobject<UAbilitySystemComponentBase>(TEXT("AbilitySystemComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +23,17 @@ void ACharacterBase::Tick(float DeltaTime){
 	Super::Tick(DeltaTime);
 
 }
+
+void ACharacterBase::PossessedBy(AController* NewController){
+	Super::PossessedBy(NewController);
+
+	if(AbilitySystemComponent){
+		AbilitySystemComponent->InitAbilityActorInfo(this,this);
+		
+	}
+	SetOwner(NewController);
+}
+
 
 // Called to bind functionality to input
 void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
