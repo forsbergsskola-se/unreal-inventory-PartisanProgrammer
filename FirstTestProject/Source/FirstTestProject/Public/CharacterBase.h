@@ -5,10 +5,12 @@
 #include "CoreMinimal.h"
 #include "Components/AbilitySystemComponentBase.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
+#include "GameplayEffectTypes.h"
 #include "CharacterBase.generated.h"
 
 UCLASS()
-class FIRSTTESTPROJECT_API ACharacterBase : public ACharacter{
+class FIRSTTESTPROJECT_API ACharacterBase : public ACharacter, public IAbilitySystemInterface{
 	GENERATED_BODY()
 
 public:
@@ -17,7 +19,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "AbilitySystem")
 	UAbilitySystemComponentBase* AbilitySystemComponent;
-	// Called every frame
+
+	UPROPERTY()
+	class UAttributeSetBase* Attribute;
+
+	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	
 	virtual void PossessedBy(AController* NewController) override;
 	// Called to bind functionality to input

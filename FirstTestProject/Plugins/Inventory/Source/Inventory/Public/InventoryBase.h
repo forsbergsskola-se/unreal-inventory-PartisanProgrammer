@@ -54,8 +54,11 @@ public:
 	
 
 private:
+	UPROPERTY(Replicated)
 	TArray<FItemStruct> Items;
 	
     bool TryIncreaseAmountInArray(const FItemStruct& Item);
 	bool AddNewItem(const FItemStruct& NewItem);
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };

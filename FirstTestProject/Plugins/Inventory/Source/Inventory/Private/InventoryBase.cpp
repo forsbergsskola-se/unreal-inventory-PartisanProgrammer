@@ -4,13 +4,14 @@
 
 #include "ItemBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values for this component's properties
 UInventoryBase::UInventoryBase(){
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
+SetIsReplicatedByDefault(true);
 	// ...
 }
 
@@ -53,6 +54,11 @@ bool UInventoryBase::AddNewItem(const FItemStruct& NewItem){
 	OnInventoryChanged.Broadcast(NewItem);
 
 	return true;;
+}
+
+void UInventoryBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(UInventoryBase, Items);
 }
 
 FItemStruct UInventoryBase::CreateItem(const FItemStruct& Item){

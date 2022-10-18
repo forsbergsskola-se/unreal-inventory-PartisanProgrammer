@@ -2,6 +2,8 @@
 
 
 #include "CharacterBase.h"
+
+#include "AttributeSetBase.h"
 #include "IInteract.h"
 
 
@@ -9,7 +11,12 @@
 ACharacterBase::ACharacterBase(){
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
 	AbilitySystemComponent=CreateDefaultSubobject<UAbilitySystemComponentBase>(TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+
+	//Attributes = CreateDefaultSubobject<UAttributeSetBase>(TEXT("Attributes")); TODO: Continue here
 }
 
 // Called when the game starts or when spawned
@@ -22,6 +29,10 @@ void ACharacterBase::BeginPlay(){
 void ACharacterBase::Tick(float DeltaTime){
 	Super::Tick(DeltaTime);
 
+}
+
+UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const{
+	return AbilitySystemComponent;
 }
 
 void ACharacterBase::PossessedBy(AController* NewController){
