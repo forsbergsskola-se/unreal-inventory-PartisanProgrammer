@@ -12,6 +12,16 @@ class FIRSTTESTPROJECT_API APlayerControllerBase : public APlayerController{
 public:
 	// Sets default values for this actor's properties
 	APlayerControllerBase();
+	
+	//Ufunction CallOnServer is used to call a function on the server with a TFunction as input
+	
+	//void CallOnServerInternal(TFunction<void()> FunctionToCall);
+	
+	
+	
+	
+	
+	
 
 protected:
 	// Called when the game starts or when spawned

@@ -13,6 +13,12 @@ APlayerControllerBase::APlayerControllerBase(){
 
 }
 
+// void APlayerControllerBase::CallOnServer(TFunctionRef<void()>& FunctionToCall){
+// 	if (HasAuthority()){
+// 		FunctionToCall();
+// 	}
+// }
+
 // Called when the game starts or when spawned
 void APlayerControllerBase::BeginPlay(){
 	Super::BeginPlay();

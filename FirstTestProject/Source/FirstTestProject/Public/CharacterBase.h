@@ -20,9 +20,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "AbilitySystem")
 	UAbilitySystemComponentBase* AbilitySystemComponent;
 
-	UPROPERTY()
-	class UAttributeSetBase* Attribute;
-
 	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	
 	virtual void PossessedBy(AController* NewController) override;

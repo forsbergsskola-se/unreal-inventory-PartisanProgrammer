@@ -23,6 +23,7 @@ public:
 	UAttributeSetBase();
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override; //Replication
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	
 #pragma region Health
 	UPROPERTY(BlueprintReadOnly, Category="Attributes", ReplicatedUsing = OnRep_Health) //Becomes replicated when using OnRep_Health
@@ -31,6 +32,15 @@ public:
 
 	UFUNCTION()
 	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth); //Replication 
+#pragma endregion
+
+#pragma region MaxHealth
+	UPROPERTY(BlueprintReadOnly, Category="Attributes", ReplicatedUsing = OnRep_MaxHealth) //Becomes replicated when using OnRep_MaxHealth
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, MaxHealth);
+
+	UFUNCTION()
+	virtual void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth); //Replication
 #pragma endregion
 
 #pragma region Stamina
@@ -45,11 +55,20 @@ public:
 #pragma region AttackPower
 	UPROPERTY(BlueprintReadOnly,Category="Attributes",ReplicatedUsing = OnRep_AttackPower)
 	FGameplayAttributeData AttackPower;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, AttackPower);
 
 	UFUNCTION()
 	virtual void OnRep_AttackPower(const FGameplayAttributeData& OldAttackPower);
 
 #pragma endregion
-	
+
+#pragma region Force
+	UPROPERTY(BlueprintReadOnly,Category="Attributes",ReplicatedUsing = OnRep_Force)
+	FGameplayAttributeData Force;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Force);
+
+	UFUNCTION()
+	virtual void OnRep_Force(const FGameplayAttributeData& OldForce);
+#pragma endregion 
 	
 };

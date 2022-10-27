@@ -15,6 +15,8 @@ public class FirstTestProject : ModuleRules
 			"InputCore",
 			"AIModule",
 			"NavigationSystem",
+			"GameFeatures",
+			"ModularGameplay"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { 
